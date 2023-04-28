@@ -1,6 +1,7 @@
-package Classes;
+package Classes.SlideItems;
 
 import AbstractClasses.SlideItem;
+import Classes.Slide;
 import Enumerations.Style;
 
 import java.awt.Rectangle;
@@ -49,7 +50,7 @@ public class TextItem extends SlideItem {
     }
 
     //Returns the AttributedString for the Item
-    public AttributedString getAttributedString(Enumerations.Style style, float scale) {
+    public AttributedString getAttributedString(Style style, float scale) {
         AttributedString attrStr = new AttributedString(getText());
         attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
         return attrStr;
@@ -58,7 +59,7 @@ public class TextItem extends SlideItem {
     //Returns the bounding box of an Item
     public Rectangle getBoundingBox(
             Graphics g, ImageObserver observer,
-            float scale, Enumerations.Style myStyle
+            float scale, Style myStyle
     ) {
         List<TextLayout> layouts = getLayouts(g, myStyle, scale);
         int xsize = 0, ysize = (int) (myStyle.leading * scale);
@@ -80,7 +81,7 @@ public class TextItem extends SlideItem {
     //Draws the item
     public void draw(
             int x, int y, float scale, Graphics g,
-            Enumerations.Style myStyle, ImageObserver o
+            Style myStyle, ImageObserver o
     ) {
         if (text == null || text.length() == 0) {
             return;
@@ -101,7 +102,7 @@ public class TextItem extends SlideItem {
         }
     }
 
-    private List<TextLayout> getLayouts(Graphics g, Enumerations.Style s, float scale) {
+    private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
         List<TextLayout> layouts = new ArrayList<TextLayout>();
         AttributedString attrStr = getAttributedString(s, scale);
         Graphics2D g2d = (Graphics2D) g;
