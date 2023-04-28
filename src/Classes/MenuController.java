@@ -1,21 +1,15 @@
 package Classes;
 
 import Enumerations.Action;
-import Exceptions.LoadFileException;
 import Exceptions.SaveFileException;
 
-import java.awt.MenuBar;
-import java.awt.Frame;
-import java.awt.Menu;
-import java.awt.MenuItem;
-import java.awt.MenuShortcut;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-
-import javax.swing.*;
 
 /**
  * <p>The controller for the menu</p>
