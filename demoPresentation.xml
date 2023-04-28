@@ -29,7 +29,7 @@
         <title>The third slide</title>
         <item kind="text" level="level1">To open a new presentation,</item>
         <item kind="text" level="level2">use File->Open from the menu.</item>
-        <item kind="text" level="level1"></item>
+        <item kind="text" level="level1"> </item>
         <item kind="text" level="level1">This is the end of the presentation.</item>
         <item kind="image" level="level1">JabberPoint.jpg</item>
     </slide>
