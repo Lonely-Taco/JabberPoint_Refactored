@@ -25,14 +25,14 @@ public class JabberPoint {
 
 	/** The main program */
 	public static void main(String[] argv) {
-		
-		Style.createStyles();
 		Presentation presentation = new Presentation();
+
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {
 			if (argv.length == 0) { //a demo presentation
+//				SlideViewerFrame filePicker = new SlideViewerFrame("pick a file", presentation);
 				DemoPresentation demoPresentation = new DemoPresentation();
-				demoPresentation.loadFile(presentation, "");
+				demoPresentation.loadFile(presentation, "demoPresentation.xml");
 			} else {
 				new XMLAccessor().loadFile(presentation, argv[0]);
 			}

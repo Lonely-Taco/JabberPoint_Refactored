@@ -1,6 +1,7 @@
 package Classes;
 
 import AbstractClasses.SlideItem;
+import Enumerations.Style;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -33,7 +34,7 @@ public class BitmapItem extends SlideItem {
 
 
   	//level indicates the item-level; name indicates the name of the file with the image
-	public BitmapItem(int level, String name) {
+	public BitmapItem(Style level, String name) {
 		super(level);
 		imageName = name;
 		try {
@@ -46,7 +47,7 @@ public class BitmapItem extends SlideItem {
 
 	//An empty bitmap item
 	public BitmapItem() {
-		this(0, null);
+		this(Style.level0, null);
 	}
 
 	//Returns the filename of the image
@@ -55,7 +56,7 @@ public class BitmapItem extends SlideItem {
 	}
 
 	//Returns the bounding box of the image
-	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
+	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Enumerations.Style myStyle) {
 		return new Rectangle((int) (myStyle.indent * scale), 0,
 				(int) (bufferedImage.getWidth(observer) * scale),
 				((int) (myStyle.leading * scale)) + 
@@ -63,7 +64,7 @@ public class BitmapItem extends SlideItem {
 	}
 
 	//Draws the image
-	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
+	public void draw(int x, int y, float scale, Graphics g, Enumerations.Style myStyle, ImageObserver observer) {
 		int width = x + (int) (myStyle.indent * scale);
 		int height = y + (int) (myStyle.leading * scale);
 		g.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
@@ -71,6 +72,6 @@ public class BitmapItem extends SlideItem {
 	}
 
 	public String toString() {
-		return "Classes.BitmapItem[" + getLevel() + "," + imageName + "]";
+		return "BitmapItem[" + getStyle().name() + "," + imageName + "]";
 	}
 }

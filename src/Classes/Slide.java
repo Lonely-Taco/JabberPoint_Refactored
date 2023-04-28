@@ -2,10 +2,12 @@ package Classes;
 
 
 import AbstractClasses.SlideItem;
+import Enumerations.Style;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
+import java.util.Enumeration;
 import java.util.Vector;
 
 /** <p>A slide. This class has drawing functionality.</p>
@@ -44,7 +46,7 @@ public class Slide {
 	}
 
 	//Create a Classes.TextItem out of a String and add the Classes.TextItem
-	public void append(int level, String message) {
+	public void append(Style level, String message) {
 		append(new TextItem(level, message));
 	}
 
@@ -68,15 +70,15 @@ public class Slide {
 		float scale = getScale(area);
 	    int y = area.y;
 	//The title is treated separately
-	    SlideItem slideItem = new TextItem(0, getTitle());
-	    Style style = Style.getStyle(slideItem.getLevel());
-	    slideItem.draw(area.x, y, scale, g, style, view);
-	    y += slideItem.getBoundingBox(g, view, scale, style).height;
+	    SlideItem slideItem = new TextItem(Style.level0, getTitle());
+
+	    slideItem.draw(area.x, y, scale, g, Enumerations.Style.level0, view);
+	    y += slideItem.getBoundingBox(g, view, scale, slideItem.getStyle()).height;
 	    for (int number=0; number<getSize(); number++) {
 	      slideItem = (SlideItem)getSlideItems().elementAt(number);
-	      style = Style.getStyle(slideItem.getLevel());
-	      slideItem.draw(area.x, y, scale, g, style, view);
-	      y += slideItem.getBoundingBox(g, view, scale, style).height;
+
+	      slideItem.draw(area.x, y, scale, g, slideItem.getStyle(), view);
+	      y += slideItem.getBoundingBox(g, view, scale, slideItem.getStyle()).height;
 	    }
 	  }
 
