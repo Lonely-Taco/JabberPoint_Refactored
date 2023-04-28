@@ -3,8 +3,6 @@ package Classes;
 import AbstractClasses.Accessor;
 import Enumerations.Style;
 
-import java.io.IOException;
-
 /**
  * A built-in demo presentation
  *

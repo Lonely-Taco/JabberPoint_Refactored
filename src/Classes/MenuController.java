@@ -39,11 +39,17 @@ public class MenuController extends MenuBar {
         parent = frame;
         presentation = pres;
 
-        MenuItem menuItem;
+        addFileMenu();
+        addViewMenu();
+        addHelpMenu();
+    }
 
+    private void addFileMenu() {
         Menu fileMenu = new Menu(Action.File.name());
 
-        fileMenu.add(menuItem = mkMenuItem(Action.Open.name()));
+        MenuItem menuItem;
+
+        fileMenu.add(menuItem = makeMenuItem(Action.Open.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -61,7 +67,7 @@ public class MenuController extends MenuBar {
             }
         });
 
-        fileMenu.add(menuItem = mkMenuItem(Action.New.name()));
+        fileMenu.add(menuItem = makeMenuItem(Action.New.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -70,7 +76,7 @@ public class MenuController extends MenuBar {
             }
         });
 
-        fileMenu.add(menuItem = mkMenuItem(Action.Save.name()));
+        fileMenu.add(menuItem = makeMenuItem(Action.Save.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +93,7 @@ public class MenuController extends MenuBar {
 
         fileMenu.addSeparator();
 
-        fileMenu.add(menuItem = mkMenuItem(Action.Exit.name()));
+        fileMenu.add(menuItem = makeMenuItem(Action.Exit.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -96,17 +102,20 @@ public class MenuController extends MenuBar {
         });
 
         add(fileMenu);
+    }
 
+    private void addViewMenu() {
         Menu viewMenu = new Menu(Action.View.name());
 
-        viewMenu.add(menuItem = mkMenuItem(Action.Next.name()));
+        MenuItem menuItem;
+        viewMenu.add(menuItem = makeMenuItem(Action.Next.name()));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.nextSlide();
             }
         });
 
-        viewMenu.add(menuItem = mkMenuItem(Action.Prev.name()));
+        viewMenu.add(menuItem = makeMenuItem(Action.Prev.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -114,7 +123,7 @@ public class MenuController extends MenuBar {
             }
         });
 
-        viewMenu.add(menuItem = mkMenuItem(Action.Goto.name()));
+        viewMenu.add(menuItem = makeMenuItem(Action.Goto.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -126,9 +135,12 @@ public class MenuController extends MenuBar {
 
         add(viewMenu);
 
-        Menu helpMenu = new Menu(Action.Help.name());
+    }
 
-        helpMenu.add(menuItem = mkMenuItem(Action.About.name()));
+    private void addHelpMenu() {
+        Menu helpMenu = new Menu(Action.Help.name());
+        MenuItem menuItem;
+        helpMenu.add(menuItem = makeMenuItem(Action.About.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -139,8 +151,8 @@ public class MenuController extends MenuBar {
         setHelpMenu(helpMenu);        //Needed for portability (Motif, etc.).
     }
 
-    //Creating a menu-item
-    public MenuItem mkMenuItem(String name) {
+
+    public MenuItem makeMenuItem(String name) {
         return new MenuItem(name, new MenuShortcut(name.charAt(0)));
     }
 }
