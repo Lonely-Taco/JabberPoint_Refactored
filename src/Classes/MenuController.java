@@ -1,6 +1,5 @@
 package Classes;
 
-import AbstractClasses.Accessor;
 import Enumerations.Action;
 import Exceptions.LoadFileException;
 import Exceptions.SaveFileException;
@@ -12,9 +11,11 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  * <p>The controller for the menu</p>
@@ -26,6 +27,9 @@ public class MenuController extends MenuBar {
 
     private Frame parent; //The frame, only used as parent for the Dialogs
     private Presentation presentation; //Commands are given to the presentation
+
+    private File filePath;
+
     private static final long serialVersionUID = 227L;
 
     protected static final String PAGENR = "Page number?";
@@ -38,35 +42,50 @@ public class MenuController extends MenuBar {
     public MenuController(Frame frame, Presentation pres) {
         parent = frame;
         presentation = pres;
-
-        addFileMenu();
-        addViewMenu();
+        MenuItem menuItem = new MenuItem();
+        Menu fileMenu = new Menu(Action.File.name());
+        addOpenFileMenuItem(fileMenu, menuItem);
+        addNewFile(fileMenu, menuItem);
+        addSaveFileMenuItem(fileMenu, menuItem);
+        addQuitMenuItem(fileMenu, menuItem);
+        addViewMenu(fileMenu);
         addHelpMenu();
     }
 
-    private void addFileMenu() {
-        Menu fileMenu = new Menu(Action.File.name());
+    private void fileChooser() {
+        JFileChooser jfc = new JFileChooser();
+        jfc.setCurrentDirectory(Paths.get("").toAbsolutePath().toFile());
+        jfc.showDialog(null, "Apply");
+        jfc.setVisible(true);
 
-        MenuItem menuItem;
+        if (jfc.getSelectedFile() != null) {
+            filePath = jfc.getSelectedFile();
+        }
+    }
 
+
+    private void addOpenFileMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.add(menuItem = makeMenuItem(Action.Open.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
-                Accessor xmlAccessor = new XMLAccessor();
-                try {
-                    xmlAccessor.loadFile(presentation, TESTFILE);
+                Accessor xmlAccessor = new Accessor();
+
+                fileChooser();
+
+                if (filePath != null) {
+                    xmlAccessor.accessFile(presentation, filePath.getPath());
                     presentation.setSlideNumber(0);
-                } catch (IOException exc) {
-                    JOptionPane.showMessageDialog(parent, IOEX + exc,
-                                                  new LoadFileException().getMessage(), JOptionPane.ERROR_MESSAGE
-                    );
                 }
+
                 parent.repaint();
             }
         });
 
+    }
+
+    private void addNewFile(Menu fileMenu, MenuItem menuItem) {
         fileMenu.add(menuItem = makeMenuItem(Action.New.name()));
 
         menuItem.addActionListener(new ActionListener() {
@@ -75,14 +94,19 @@ public class MenuController extends MenuBar {
                 parent.repaint();
             }
         });
+    }
 
+    private void addSaveFileMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.add(menuItem = makeMenuItem(Action.Save.name()));
 
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Accessor xmlAccessor = new XMLAccessor();
+                Accessor xmlAccessor = new Accessor();
                 try {
-                    xmlAccessor.saveFile(presentation, SAVEFILE);
+                    fileChooser();
+                    if (filePath != null) {
+                        FileManager.saveFile(presentation, filePath.getPath());
+                    }
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(parent, IOEX + exc,
                                                   new SaveFileException().getMessage(), JOptionPane.ERROR_MESSAGE
@@ -90,7 +114,9 @@ public class MenuController extends MenuBar {
                 }
             }
         });
+    }
 
+    private void addQuitMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.addSeparator();
 
         fileMenu.add(menuItem = makeMenuItem(Action.Exit.name()));
@@ -104,10 +130,9 @@ public class MenuController extends MenuBar {
         add(fileMenu);
     }
 
-    private void addViewMenu() {
+    private void addViewMenu(MenuItem menuItem) {
         Menu viewMenu = new Menu(Action.View.name());
 
-        MenuItem menuItem;
         viewMenu.add(menuItem = makeMenuItem(Action.Next.name()));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -140,6 +165,7 @@ public class MenuController extends MenuBar {
     private void addHelpMenu() {
         Menu helpMenu = new Menu(Action.Help.name());
         MenuItem menuItem;
+
         helpMenu.add(menuItem = makeMenuItem(Action.About.name()));
 
         menuItem.addActionListener(new ActionListener() {
