@@ -30,7 +30,6 @@ public class SlideViewerComponent extends JComponent {
 	private JFrame frame = null;
 	
 	private static final long serialVersionUID = 227L;
-	
 	private static final Color BGCOLOR = Color.white;
 	private static final Color COLOR = Color.black;
 	private static final String FONTNAME = "Dialog";
@@ -70,7 +69,7 @@ public class SlideViewerComponent extends JComponent {
 		}
 		g.setFont(labelFont);
 		g.setColor(COLOR);
-		g.drawString("Classes.Slide " + (1 + presentation.getSlideNumber()) + " of " +
+		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
                  presentation.getSize(), XPOS, YPOS);
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 		slide.draw(g, area, this);
