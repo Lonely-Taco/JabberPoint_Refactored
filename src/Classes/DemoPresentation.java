@@ -1,6 +1,6 @@
 package Classes;
 
-import AbstractClasses.Accessor;
+import Classes.SlideItems.BitmapItem;
 import Enumerations.Style;
 
 /**
@@ -10,7 +10,7 @@ import Enumerations.Style;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class DemoPresentation extends Accessor {
+public class DemoPresentation {
 
     public void makeDemoPresentation(Presentation presentation) {
         presentation.setTitle("Demo Presentation");
@@ -48,9 +48,5 @@ public class DemoPresentation extends Accessor {
         slide.append(Style.level1, "This is the end of the presentation.");
         slide.append(new BitmapItem(Style.level1, "JabberPoint.jpg"));
         presentation.append(slide);
-    }
-
-    public void saveFile(Presentation presentation, String unusedFilename) {
-        throw new IllegalStateException("Save As->Demo! called");
     }
 }
