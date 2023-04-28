@@ -1,3 +1,7 @@
+package Classes;
+
+import AbstractClasses.Accessor;
+
 /** A built-in demo presentation
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.1 2002/12/17 Gert Florijn
@@ -8,13 +12,13 @@
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-class DemoPresentation extends Accessor {
+public class DemoPresentation extends Accessor {
 
 	public void loadFile(Presentation presentation, String unusedFilename) {
-		presentation.setTitle("Demo Presentation");
+		presentation.setTitle("Demo Classes.Presentation");
 		Slide slide;
 		slide = new Slide();
-		slide.setTitle("JabberPoint");
+		slide.setTitle("Classes.JabberPoint");
 		slide.append(1, "The Java prestentation tool");
 		slide.append(2, "Copyright (c) 1996-2000: Ian Darwin");
 		slide.append(2, "Copyright (c) 2000-now:");

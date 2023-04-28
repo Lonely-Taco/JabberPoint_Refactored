@@ -1,7 +1,11 @@
+package Classes;
+
+import Classes.Presentation;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
-/** <p>This is the KeyController (KeyListener)</p>
+/** <p>This is the Classes.KeyController (KeyListener)</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
  * @version 1.1 2002/12/17 Gert Florijn
  * @version 1.2 2003/11/19 Sylvia Stuurman

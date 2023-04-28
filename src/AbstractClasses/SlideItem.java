@@ -1,3 +1,7 @@
+package AbstractClasses;
+
+import Classes.Style;
+
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
@@ -14,7 +18,7 @@ import java.awt.image.ImageObserver;
 */
 
 public abstract class SlideItem {
-	private int level = 0; //The level of the SlideItem
+	private int level = 0; //The level of the AbstractClasses.SlideItem
 
 	public SlideItem(int lev) {
 		level = lev;
@@ -34,6 +38,6 @@ public abstract class SlideItem {
 			ImageObserver observer, float scale, Style style);
 
 //Draws the item
-	public abstract void draw(int x, int y, float scale, 
-			Graphics g, Style style, ImageObserver observer);
+	public abstract void draw(int x, int y, float scale,
+                              Graphics g, Style style, ImageObserver observer);
 }

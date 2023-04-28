@@ -1,3 +1,5 @@
+package Classes;
+
 import java.util.ArrayList;
 
 
@@ -73,7 +75,7 @@ public class Presentation {
 	}
 
 	//Remove the presentation
-	void clear() {
+	public void clear() {
 		showList = new ArrayList<Slide>();
 		setSlideNumber(-1);
 	}

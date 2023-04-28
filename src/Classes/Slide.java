@@ -1,3 +1,8 @@
+package Classes;
+
+
+import AbstractClasses.SlideItem;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
@@ -23,7 +28,7 @@ public class Slide {
 		items = new Vector<SlideItem>();
 	}
 
-	//Add a SlideItem
+	//Add a AbstractClasses.SlideItem
 	public void append(SlideItem anItem) {
 		items.addElement(anItem);
 	}
@@ -38,12 +43,12 @@ public class Slide {
 		title = newTitle;
 	}
 
-	//Create a TextItem out of a String and add the TextItem
+	//Create a Classes.TextItem out of a String and add the Classes.TextItem
 	public void append(int level, String message) {
 		append(new TextItem(level, message));
 	}
 
-	//Returns the SlideItem
+	//Returns the AbstractClasses.SlideItem
 	public SlideItem getSlideItem(int number) {
 		return (SlideItem)items.elementAt(number);
 	}

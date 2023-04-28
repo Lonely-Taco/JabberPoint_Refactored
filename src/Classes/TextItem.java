@@ -1,3 +1,7 @@
+package Classes;
+
+import AbstractClasses.SlideItem;
+
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -107,6 +111,6 @@ public class TextItem extends SlideItem {
 	}
 
 	public String toString() {
-		return "TextItem[" + getLevel()+","+getText()+"]";
+		return "Classes.TextItem[" + getLevel()+","+getText()+"]";
 	}
 }

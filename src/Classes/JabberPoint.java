@@ -1,8 +1,10 @@
+package Classes;
+
 import javax.swing.JOptionPane;
 
 import java.io.IOException;
 
-/** JabberPoint Main Program
+/** Classes.JabberPoint Main Program
  * <p>This program is distributed under the terms of the accompanying
  * COPYRIGHT.txt file (which is NOT the GNU General Public License).
  * Please read it. Your use of the software constitutes acceptance
@@ -29,7 +31,8 @@ public class JabberPoint {
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {
 			if (argv.length == 0) { //a demo presentation
-				Accessor.getDemoAccessor().loadFile(presentation, "");
+				DemoPresentation demoPresentation = new DemoPresentation();
+				demoPresentation.loadFile(presentation, "");
 			} else {
 				new XMLAccessor().loadFile(presentation, argv[0]);
 			}
