@@ -14,10 +14,9 @@ import java.awt.image.ImageObserver;
  */
 
 public abstract class SlideItem {
-    private int level = 0; //The level of the SlideItem
-    public Style style;
+    private Style style;
 
-    public SlideItem(Enumerations.Style style) {
+    public SlideItem(Style style) {
         this.style = style;
     }
 
@@ -34,12 +33,12 @@ public abstract class SlideItem {
     //Returns the bounding box
     public abstract Rectangle getBoundingBox(
             Graphics g,
-            ImageObserver observer, float scale, Enumerations.Style style
+            ImageObserver observer, float scale, Style style
     );
 
     //Draws the item
     public abstract void draw(
             int x, int y, float scale,
-            Graphics g, Enumerations.Style style, ImageObserver observer
+            Graphics g, Style style, ImageObserver observer
     );
 }

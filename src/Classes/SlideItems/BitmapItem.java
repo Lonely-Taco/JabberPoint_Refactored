@@ -1,4 +1,4 @@
-package Classes;
+package Classes.SlideItems;
 
 import AbstractClasses.SlideItem;
 import Enumerations.Style;
@@ -64,7 +64,7 @@ public class BitmapItem extends SlideItem {
 	}
 
 	//Draws the image
-	public void draw(int x, int y, float scale, Graphics g, Enumerations.Style myStyle, ImageObserver observer) {
+	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
 		int width = x + (int) (myStyle.indent * scale);
 		int height = y + (int) (myStyle.leading * scale);
 		g.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
