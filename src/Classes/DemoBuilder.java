@@ -10,9 +10,9 @@ import Enumerations.Style;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class DemoPresentation {
+public class DemoBuilder {
 
-    public void makeDemoPresentation(Presentation presentation) {
+    public void buildDemoPresentation(Presentation presentation) {
         presentation.setTitle("Demo Presentation");
         Slide slide;
         slide = new Slide();

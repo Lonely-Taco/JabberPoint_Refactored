@@ -3,6 +3,7 @@ package Classes;
 import AbstractClasses.SlideItem;
 import Classes.SlideItems.BitmapItem;
 import Classes.SlideItems.TextItem;
+import Exceptions.LoadFileException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -11,25 +12,34 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Vector;
 
 public class FileManager {
     public static Element loadFile(String filename) {
-        try {
+        try
+        {
+            if (Files.notExists(Path.of(filename))) {
+                throw new LoadFileException();
+            }
+
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document document = builder.parse(new InputSource(filename)); //Create a JDOM document
 
             return document.getDocumentElement();
 
-        } catch (IOException | ParserConfigurationException | SAXException exception) {
+        } catch (IOException | ParserConfigurationException | SAXException | LoadFileException exception) {
             System.err.println(exception.getMessage());
         }
 
         return null;
     }
+
     public static void saveFile(Presentation presentation, String filename) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(filename));
         out.println("<?xml version=\"1.0\"?>");
