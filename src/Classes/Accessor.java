@@ -38,15 +38,11 @@ public class Accessor {
     protected static final String UNKNOWNTYPE = "Unknown Element type";
     protected static final String NFE = "Number Format Exception";
 
-    protected String getTitle(Element element, String tagName) {
-        NodeList titles = element.getElementsByTagName(tagName);
-        return titles.item(0).getTextContent();
-    }
 
     protected void accessFile(Presentation presentation, String filename) {
         int slideNumber, itemNumber, max = 0, maxItems = 0;
         Element doc = FileManager.loadFile(filename);
-        if (doc == null){
+        if (doc == null) {
             return;
         }
 
@@ -66,6 +62,11 @@ public class Accessor {
                 parseSlideItem(slide, item);
             }
         }
+    }
+
+    protected String getTitle(Element element, String tagName) {
+        NodeList titles = element.getElementsByTagName(tagName);
+        return titles.item(0).getTextContent();
     }
 
     protected void parseSlideItem(Slide slide, Element item) {

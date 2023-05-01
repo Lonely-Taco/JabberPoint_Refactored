@@ -32,9 +32,9 @@ public class JabberPoint {
         Presentation presentation = new Presentation();
         new SlideViewerFrame(JABVERSION, presentation);
         Accessor xmlAccessor = new Accessor();
-
+        
         if (argv.length == 0) { //a demo presentation
-            xmlAccessor.accessFile(presentation, "demoPresentation.xml");
+           new DemoBuilder().buildDemoPresentation(presentation);
         }
         else {
             xmlAccessor.accessFile(presentation, argv[0]);

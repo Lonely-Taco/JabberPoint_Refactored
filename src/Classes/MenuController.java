@@ -18,19 +18,11 @@ import java.nio.file.Paths;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 public class MenuController extends MenuBar {
-
     private Frame parent; //The frame, only used as parent for the Dialogs
     private Presentation presentation; //Commands are given to the presentation
-
     private File filePath;
-
     private static final long serialVersionUID = 227L;
-
     protected static final String PAGENR = "Page number?";
-
-    protected String TESTFILE = "testPresentation.xml";
-    protected String SAVEFILE = "savedPresentation.xml";
-
     protected static final String IOEX = "IO Exception: ";
 
     public MenuController(Frame frame, Presentation pres) {
@@ -60,7 +52,6 @@ public class MenuController extends MenuBar {
 
     private void addOpenFileMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.add(menuItem = makeMenuItem(Action.Open.name()));
-
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();

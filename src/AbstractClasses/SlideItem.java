@@ -24,21 +24,14 @@ public abstract class SlideItem {
         this(Style.level0);
     }
 
-
     //Returns the level
     public Style getStyle() {
         return style;
     }
 
     //Returns the bounding box
-    public abstract Rectangle getBoundingBox(
-            Graphics g,
-            ImageObserver observer, float scale, Style style
-    );
+    public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style style);
 
     //Draws the item
-    public abstract void draw(
-            int x, int y, float scale,
-            Graphics g, Style style, ImageObserver observer
-    );
+    public abstract void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer);
 }
