@@ -17,15 +17,15 @@ import java.nio.file.Paths;
  */
 public class MenuController extends MenuBar {
     private Frame parent; //The frame, only used as parent for the Dialogs
-    private Presentation presentation; //Commands are given to the presentation
+    private PresentationController presentationController; //Commands are given to the presentation
     private File filePath;
     private static final long serialVersionUID = 227L;
     protected static final String PAGENR = "Page number?";
     protected static final String IOEX = "IO Exception: ";
 
-    public MenuController(Frame frame, Presentation pres) {
+    public MenuController(Frame frame, PresentationController presentationController) {
         parent = frame;
-        presentation = pres;
+        this.presentationController = presentationController;
         MenuItem menuItem = new MenuItem();
         Menu fileMenu = new Menu(Action.File.name());
         addOpenFileMenuItem(fileMenu, menuItem);
@@ -51,14 +51,14 @@ public class MenuController extends MenuBar {
     private void addOpenFileMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.add(menuItem = makeMenuItem(Action.Open.name()));
         menuItem.addActionListener(actionEvent -> {
-            presentation.clear();
+            presentationController.clearPresentation();
             Accessor xmlAccessor = new Accessor();
 
             fileChooser();
 
             if (filePath != null) {
-                xmlAccessor.accessFile(presentation, filePath.getPath());
-                presentation.setSlideNumber(0);
+                xmlAccessor.accessFile(presentationController.getPresentation(), filePath.getPath());
+                presentationController.setSlideNumber(0);
             }
 
             parent.repaint();
@@ -70,7 +70,7 @@ public class MenuController extends MenuBar {
         fileMenu.add(menuItem = makeMenuItem(Action.New.name()));
 
         menuItem.addActionListener(actionEvent -> {
-            presentation.clear();
+            presentationController.clearPresentation();
             parent.repaint();
         });
     }
@@ -82,7 +82,7 @@ public class MenuController extends MenuBar {
             try {
                 fileChooser();
                 if (filePath != null) {
-                    FileManager.saveFile(presentation, filePath.getPath());
+                    FileManager.saveFile(presentationController.getPresentation(), filePath.getPath());
                 }
             } catch (IOException exc) {
                 JOptionPane.showMessageDialog(parent, IOEX + exc,
@@ -95,21 +95,21 @@ public class MenuController extends MenuBar {
     private void addQuitMenuItem(Menu fileMenu, MenuItem menuItem) {
         fileMenu.addSeparator();
         fileMenu.add(menuItem = makeMenuItem(Action.Exit.name()));
-        menuItem.addActionListener(actionEvent -> presentation.exit(0));
+        menuItem.addActionListener(actionEvent -> presentationController.exit(0));
         add(fileMenu);
     }
 
     private void addViewMenu(MenuItem menuItem) {
         Menu viewMenu = new Menu(Action.View.name());
         viewMenu.add(menuItem = makeMenuItem(Action.Next.name()));
-        menuItem.addActionListener(actionEvent -> presentation.nextSlide());
+        menuItem.addActionListener(actionEvent -> presentationController.nextSlide());
         viewMenu.add(menuItem = makeMenuItem(Action.Prev.name()));
-        menuItem.addActionListener(actionEvent -> presentation.prevSlide());
+        menuItem.addActionListener(actionEvent -> presentationController.prevSlide());
         viewMenu.add(menuItem = makeMenuItem(Action.Goto.name()));
         menuItem.addActionListener(actionEvent -> {
             String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
             int pageNumber = Integer.parseInt(pageNumberStr);
-            presentation.setSlideNumber(pageNumber - 1);
+            presentationController.setSlideNumber(pageNumber - 1);
         });
 
         add(viewMenu);

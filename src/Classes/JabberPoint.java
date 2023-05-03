@@ -24,7 +24,8 @@ public class JabberPoint {
      */
     public static void main(String[] argv) {
         Presentation presentation = new Presentation();
-        new SlideViewerFrame(JABVERSION, presentation);
+        PresentationController presentationController = new PresentationController(presentation);
+        new SlideViewerFrame(JABVERSION, presentationController);
         Accessor xmlAccessor = new Accessor();
         
         if (argv.length == 0) { //a demo presentation
@@ -33,6 +34,7 @@ public class JabberPoint {
         else {
             xmlAccessor.accessFile(presentation, argv[0]);
         }
-        presentation.setSlideNumber(0);
+
+        presentationController.setSlideNumber(0);
     }
 }
