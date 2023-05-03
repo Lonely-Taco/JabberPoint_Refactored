@@ -1,24 +1,12 @@
 package Classes;
 
-import AbstractClasses.SlideItem;
 import Classes.SlideItems.BitmapItem;
 import Classes.SlideItems.TextItem;
 import Enumerations.Attribute;
 import Enumerations.Style;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Vector;
 
 /**
  * <p>An Classes.Accessor makes it possible to read and write data

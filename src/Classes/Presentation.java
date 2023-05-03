@@ -31,7 +31,7 @@ public class Presentation {
 		clear();
 	}
 
-	public int getSize() {
+	public int getPresentationSize() {
 		return showList.size();
 	}
 
@@ -87,7 +87,7 @@ public class Presentation {
 
 	//Return a slide with a specific number
 	public Slide getSlide(int number) {
-		if (number < 0 || number >= getSize()){
+		if (number < 0 || number >= getPresentationSize()){
 			return null;
 	    }
 			return (Slide)showList.get(number);

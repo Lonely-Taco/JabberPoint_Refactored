@@ -12,7 +12,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,7 +47,7 @@ public class FileManager {
         out.print("<showtitle>");
         out.print(presentation.getTitle());
         out.println("</showtitle>");
-        for (int slideNumber = 0; slideNumber < presentation.getSize(); slideNumber++) {
+        for (int slideNumber = 0; slideNumber < presentation.getPresentationSize(); slideNumber++) {
             Slide slide = presentation.getSlide(slideNumber);
             out.println("<slide>");
             out.println("<title>" + slide.getTitle() + "</title>");

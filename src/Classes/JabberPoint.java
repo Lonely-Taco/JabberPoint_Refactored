@@ -1,9 +1,5 @@
 package Classes;
 
-import javax.swing.JOptionPane;
-
-import java.io.IOException;
-
 /**
  * Classes.JabberPoint Main Program
  * <p>This program is distributed under the terms of the accompanying
@@ -21,8 +17,6 @@ import java.io.IOException;
  */
 
 public class JabberPoint {
-    protected static final String IOERR = "IO Error: ";
-    protected static final String JABERR = "Jabberpoint Error ";
     protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 
     /**
@@ -34,7 +28,7 @@ public class JabberPoint {
         Accessor xmlAccessor = new Accessor();
         
         if (argv.length == 0) { //a demo presentation
-           new DemoBuilder().buildDemoPresentation(presentation);
+           new PresentationBuilder().buildDemoPresentation(presentation);
         }
         else {
             xmlAccessor.accessFile(presentation, argv[0]);
