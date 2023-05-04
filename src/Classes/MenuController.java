@@ -57,7 +57,7 @@ public class MenuController extends MenuBar {
             fileChooser();
 
             if (filePath != null) {
-                xmlAccessor.accessFile(presentationController.getPresentation(), filePath.getPath());
+                presentationController.setPresentation(xmlAccessor.accessFile(filePath.getPath()), parent);
                 presentationController.setSlideNumber(0);
             }
 
@@ -122,7 +122,6 @@ public class MenuController extends MenuBar {
         menuItem.addActionListener(actionEvent -> AboutBox.show(parent));
         setHelpMenu(helpMenu);        //Needed for portability (Motif, etc.).
     }
-
 
     public MenuItem makeMenuItem(String name) {
         return new MenuItem(name, new MenuShortcut(name.charAt(0)));

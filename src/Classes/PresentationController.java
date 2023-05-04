@@ -1,5 +1,6 @@
 package Classes;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class PresentationController {
@@ -12,7 +13,7 @@ public class PresentationController {
 
     public PresentationController(Presentation presentation) {
         this.presentation = presentation;
-        clearPresentation();
+        setSlideNumber(0);
     }
 
     //Returns the number of the current slide
@@ -20,11 +21,11 @@ public class PresentationController {
         return currentSlideNumber;
     }
 
-    //Change the current slide number and report it the the window
+    //Change the current slide number and report it the window
     public void setSlideNumber(int number) {
         currentSlideNumber = number;
         if (slideViewComponent != null) {
-            slideViewComponent.update(presentation);
+            slideViewComponent.update(this.presentation);
         }
     }
 
@@ -44,6 +45,7 @@ public class PresentationController {
 
     public void setShowView(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
+        setSlideNumber(1);
     }
 
     //Return the current slide
@@ -62,5 +64,10 @@ public class PresentationController {
 
     public Presentation getPresentation() {
         return this.presentation;
+    }
+
+    public void setPresentation(Presentation presentation, Frame frame) {
+        this.presentation = presentation;
+        frame.repaint();
     }
 }

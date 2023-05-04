@@ -46,7 +46,8 @@ public class SlideViewerComponent extends JComponent {
 			repaint();
 			return;
 		}
-//		this.presentation = presentation;
+
+
 		this.slide = presentationController.getCurrentSlide();
 		repaint();
 		frame.setTitle(presentation.getTitle());
