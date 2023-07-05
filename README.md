@@ -1,5 +1,27 @@
 # JabberPoint_Refactored
 
+
+## The files submited are in folders Part 1 and Part 2.
+
+## Part 1:
+Predicted class diagram of JabberPoint.
+Use case diagram.
+Activity diagrams.
+
+## Part 2:
+Refactor proposal report.
+Description of the current implementaion of JabberPoint in class diagram.
+Refactored diagram.
+
+## Programmed JabberPoint with implemented changes.
+
+```
+I've implemented a way to choose presentation files in the program. 
+When "Open" or "Save" actions are used the user is presented with file chooser window.
+
+Select or save to a .xml file format.
+```
+
 # JabberPoint
 According to the brief documentation on the software itself, Jabber is a crude implementation for a slide presentation software.
 This brief report proposes a new refactored solution as well as an explanation on the design choices for said solution.
